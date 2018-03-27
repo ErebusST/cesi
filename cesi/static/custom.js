@@ -608,6 +608,16 @@ var $selectgroupenv = function(){
                                  var nodename=$(this).attr('nodename');
                                  var processname=$(this).attr('processname');
                                  var processgroup=$(this).attr('processgroup');
+								 var url=$(this).attr('url');
+                            var nodename=$(this).attr('nodename');
+                            var processname=$(this).attr('processname');
+                            var processgroup=$(this).attr('processgroup');
+							window.sessionStorage.setItem("url",url);
+							window.sessionStorage.setItem("nodename",nodename);
+							window.sessionStorage.setItem("processname",processname);
+							window.sessionStorage.setItem("processgroup",processgroup);
+							window.open("logs.html");
+							return;
                                  var classname = nodename+"_"+processgroup+"_"+processname
                                  var $dia = $("."+classname);
                                  var timer;
@@ -781,6 +791,16 @@ var $selectgroupenv = function(){
                                 var nodename=$(this).attr('nodename');
                                 var processname=$(this).attr('processname');
                                 var processgroup=$(this).attr('processgroup');
+								var url=$(this).attr('url');
+                            var nodename=$(this).attr('nodename');
+                            var processname=$(this).attr('processname');
+                            var processgroup=$(this).attr('processgroup');
+							window.sessionStorage.setItem("url",url);
+							window.sessionStorage.setItem("nodename",nodename);
+							window.sessionStorage.setItem("processname",processname);
+							window.sessionStorage.setItem("processgroup",processgroup);
+							window.open("logs.html");
+							return;
                                 var classname = nodename+"_"+processgroup+"_"+processname
                                 var $dia = $("."+classname);
                                 var timer;
@@ -1057,12 +1077,22 @@ var $selectnode = function(){
                         var $readlog = $tr_p.children('td').last().children('a').first();
     
                         $readlog.click(function(){
+							
+							
                             var url=$(this).attr('url');
                             var nodename=$(this).attr('nodename');
                             var processname=$(this).attr('processname');
                             var processgroup=$(this).attr('processgroup');
+							window.sessionStorage.setItem("url",url);
+							window.sessionStorage.setItem("nodename",nodename);
+							window.sessionStorage.setItem("processname",processname);
+							window.sessionStorage.setItem("processgroup",processgroup);
+							window.open("logs.html");
+							return;
                             var classname = nodename+"_"+processgroup+"_"+processname
                             var $dia = $("."+classname);
+							
+							
                             var timer;
 
                             if($dia.length==0){

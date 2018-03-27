@@ -1,0 +1,50 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="i_title">cesi</title>
+</head>
+<body>
+<pre style="word-wrap: break-word; white-space: pre-wrap;font-size:13px; " id="logs">
+</pre>
+<script language="JavaScript" type="text/javascript" src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+<script>
+    var url = window.sessionStorage.getItem("url");
+    var nodename = window.sessionStorage.getItem("nodename");
+    var processname = window.sessionStorage.getItem("processname");
+    var processgroup = window.sessionStorage.getItem("processgroup");
+    console.log(url, nodename, processname, processgroup);
+    $("#i_title").text(nodename+'-'+processname);
+    var timer;
+    $.ajax({
+        url: url,
+        dataType: 'json',
+        success: function (log) {
+            if (log['status'] == "success") {
+                timer = setInterval(function () {
+                    $.ajax({
+                        url: url,
+                        dataType: 'json',
+                        success: function (log) {
+                            $("#logs").html($("#logs").html() + (log['log']));
+                            //$dia.html('<pre>'+log['log']+'</pre>');
+                        }
+                    });
+                }, 200);
+
+            } else {
+                noty({
+                    timeout: 5000,
+                    layout: 'bottom',
+                    text: log['message'],
+                    type: 'warning',
+                    closeWith: ['click']
+                });
+
+            }
+        }
+    });
+</script>
+</body>
+
+</html>
