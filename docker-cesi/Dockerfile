@@ -7,7 +7,7 @@ ENV CESI_USERINFO_FILE /cesi/userinfo.db
 
 RUN apt-get update && apt-get -y install sqlite3 python python-flask && \
     apt-get -y install git && \
-    git clone http://github.com/ErebusST/cesi && \
+    git clone https://github.com/ErebusST/cesi && \
     mkdir /var/log/cesi && \
     touch $CESI_USERINFO_FILE && \
     sqlite3 $CESI_USERINFO_FILE < cesi/userinfo.sql
