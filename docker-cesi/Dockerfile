@@ -1,12 +1,13 @@
-FROM debian:jessie 
+FROM ubuntu:16.04
 
-MAINTAINER Burcin Akalin brcnakalin@gmail.com
+MAINTAINER ErebusST "situbin@foxmail.com"
+
 
 ENV CESI_USERINFO_FILE /cesi/userinfo.db
 
 RUN apt-get update && apt-get -y install sqlite3 python python-flask && \
     apt-get -y install git && \
-    git clone https://github.com/Gamegos/cesi && \
+    git clone http://github.com/ErebusST/cesi && \
     mkdir /var/log/cesi && \
     touch $CESI_USERINFO_FILE && \
     sqlite3 $CESI_USERINFO_FILE < cesi/userinfo.sql
