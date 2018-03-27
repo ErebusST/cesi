@@ -1,11 +1,10 @@
-<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="i_title">cesi</title>
 </head>
 <body>
-<pre style="word-wrap: break-word; white-space: pre-wrap;font-size:13px; " id="logs">
+<pre style="word-wrap: break-word; white-space: pre-wrap;font-size:12px;" id="logs">
 </pre>
 <script language="JavaScript" type="text/javascript" src="{{ url_for('static', filename='jquery.min.js') }}"></script>
 <script>
@@ -14,8 +13,9 @@
     var processname = window.sessionStorage.getItem("processname");
     var processgroup = window.sessionStorage.getItem("processgroup");
     console.log(url, nodename, processname, processgroup);
-    $("#i_title").text(nodename+'-'+processname);
+    $("#i_title").text(nodename+' | '+processname);
     var timer;
+    var logtext;
     $.ajax({
         url: url,
         dataType: 'json',
@@ -26,11 +26,18 @@
                         url: url,
                         dataType: 'json',
                         success: function (log) {
-                            $("#logs").html($("#logs").html() + (log['log']));
+                            if(logtext != log['log'])
+                            {
+                                $("#logs").html($("#logs").html() + (log['log']));
+                                logtext = log['log'];
+                            }
+                            else{
+                                
+                            }
                             //$dia.html('<pre>'+log['log']+'</pre>');
                         }
                     });
-                }, 200);
+                }, 100);
 
             } else {
                 noty({
